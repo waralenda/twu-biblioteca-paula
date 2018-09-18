@@ -50,8 +50,19 @@ public class ExampleTest {
         List<Book> listOfBooks = new ArrayList<Book>();
         listOfBooks.add(b);
         Library l = new Library(listOfBooks);
-        l.checkout(b, listOfBooks);
+        l.checkoutBook(b, listOfBooks);
         assertFalse(b.getAvailability());
+    }
+
+    @Test
+    public void testReturnBook() {
+        Book b = new Book("Title1", "Author1", 1984);
+        b.setUnavailable();
+        List<Book> listOfBooks = new ArrayList<Book>();
+        listOfBooks.add(b);
+        Library l = new Library(listOfBooks);
+        l.returnBook(b, listOfBooks);
+        assertTrue(b.getAvailability());
     }
 
 }
