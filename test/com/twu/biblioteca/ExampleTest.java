@@ -48,7 +48,7 @@ public class ExampleTest {
         List<Book> listOfBooks = new ArrayList<Book>();
         listOfBooks.add(b);
         Library l = new Library(listOfBooks);
-        l.checkout(b);
+        l.checkout(b, listOfBooks);
         assertEquals(false, b.getAvailability());
     }
 
