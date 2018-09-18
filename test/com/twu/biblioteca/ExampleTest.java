@@ -3,6 +3,8 @@ package com.twu.biblioteca;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -11,14 +13,14 @@ public class ExampleTest {
     @Test
     public void testGetAvailability() {
         Book b = new Book("Title1", "Author1", 1984);
-        assertEquals(true, b.getAvailability());
+        assertTrue(b.getAvailability());
     }
 
     @Test
     public void testSetUnavailabile() {
         Book b = new Book("Title1", "Author1", 1984);
         b.setUnavailable();
-        assertEquals(false, b.getAvailability());
+        assertFalse(b.getAvailability());
     }
 
     @Test
@@ -26,7 +28,7 @@ public class ExampleTest {
         Book b = new Book("Title", "Author1", 1984);
         b.setUnavailable();
         b.setAvailable();
-        assertEquals(true, b.getAvailability());
+        assertTrue(b.getAvailability());
     }
 
     @Test
@@ -49,7 +51,7 @@ public class ExampleTest {
         listOfBooks.add(b);
         Library l = new Library(listOfBooks);
         l.checkout(b, listOfBooks);
-        assertEquals(false, b.getAvailability());
+        assertFalse(b.getAvailability());
     }
 
 }
