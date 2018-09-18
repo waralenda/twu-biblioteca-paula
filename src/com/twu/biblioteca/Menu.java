@@ -23,41 +23,45 @@ public class Menu {
 
     void chooseOption() {
         int choice = takeInput.nextInt();
-        switch (choice) {
-            case 1: {
-                library.listBooks();
-                this.display();
-                this.chooseOption();
-                break;
-            }
-            case 2: {
-                System.out.println("What is the title of the book you would like to checkout?");
-                String title = takeInput.next();
-                System.out.println("Who is the author of the book you would like to checkout?");
-                String author = takeInput.next();
-                System.out.println("When was this book published?");
-                int year = takeInput.nextInt();
-                Book b = new Book(title, author, year);
-                library.checkoutBook(b, listOfBooks);
-                this.display();
-                this.chooseOption();
-                break;
-            }
-            case 3: {
-                System.out.println("What is the title of the book you would like to return?");
-                String title = takeInput.next();
-                System.out.println("Who is the author of the book you would like to return?");
-                String author = takeInput.next();
-                System.out.println("When was this book published?");
-                int year = takeInput.nextInt();
-                Book b = new Book(title, author, year);
-                library.returnBook(b, listOfBooks);
-                this.display();
-                this.chooseOption();
-                break;
-            }
+        if (this.checkIfValid(choice);){
+            switch (choice) {
+                case 1: {
+                    library.listBooks();
+                    this.display();
+                    this.chooseOption();
+                    break;
+                }
+                case 2: {
+                    System.out.println("What is the title of the book you would like to checkout?");
+                    String title = takeInput.next();
+                    System.out.println("Who is the author of the book you would like to checkout?");
+                    String author = takeInput.next();
+                    System.out.println("When was this book published?");
+                    int year = takeInput.nextInt();
+                    Book b = new Book(title, author, year);
+                    library.checkoutBook(b, listOfBooks);
+                    this.display();
+                    this.chooseOption();
+                    break;
+                }
+                case 3: {
+                    System.out.println("What is the title of the book you would like to return?");
+                    String title = takeInput.next();
+                    System.out.println("Who is the author of the book you would like to return?");
+                    String author = takeInput.next();
+                    System.out.println("When was this book published?");
+                    int year = takeInput.nextInt();
+                    Book b = new Book(title, author, year);
+                    library.returnBook(b, listOfBooks);
+                    this.display();
+                    this.chooseOption();
+                    break;
+                }
 
 
+            }
         }
+
+
     }
 }

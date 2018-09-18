@@ -65,4 +65,11 @@ public class ExampleTest {
         assertTrue(b.getAvailability());
     }
 
+    @Test
+    public void testCheckIfValid() {
+        List listOfBooks = new ArrayList();
+        Library library = new Library(listOfBooks);
+        Menu menu = new Menu(library);
+        assertFalse(menu.checkIfValid(5);)
+    }
 }
