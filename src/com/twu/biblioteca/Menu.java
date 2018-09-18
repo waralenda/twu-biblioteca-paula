@@ -7,9 +7,9 @@ public class Menu {
         System.out.println("    1) List of all books");
         System.out.println("    2) Checkout book");
         System.out.println("    3) Return book");
+        System.out.println("    4) Quit");
     }
 
-    
 
 
 }
