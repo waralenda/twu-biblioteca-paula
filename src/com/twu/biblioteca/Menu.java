@@ -26,7 +26,7 @@ public class Menu {
         if (this.checkIfValid(choice)) {
             switch (choice) {
                 case 1: {
-                    library.listBooks();
+                    library.listBooks(library.getListOfBooks());
                     this.display();
                     this.chooseOption();
                     break;

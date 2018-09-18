@@ -43,6 +43,11 @@ public class ExampleTest {
         assertEquals(1984, b.getYearPublished());
     }
 
+    @Test
+    public void testGetTitle() {
+        Book b = new Book("Title1", "Author1", 1994);
+        assertEquals("Title1", b.getTitle());
+    }
 
     @Test
     public void testCheckoutBook() {
@@ -72,4 +77,5 @@ public class ExampleTest {
         Menu menu = new Menu(library);
         assertFalse(menu.checkIfValid(5));
     }
+
 }

@@ -10,6 +10,10 @@ public class Library {
         this.listOfBooks = listOfBooks;
     }
 
+    public List<Book> getListOfBooks() {
+        return this.listOfBooks;
+    }
+
     void checkoutBook(Book b, List<Book> listOfBooks){
         if (listOfBooks.contains(b)){
             b.setUnavailable();
@@ -30,9 +34,18 @@ public class Library {
         }
     }
 
-    void listBooks() {
+    void listBooks(List<Book> listOfBooks) {
+        printThreeColumns("Title", "Author", "Year Published");
+        System.out.println("------------------------------------------------------------");
+        for (Book b : listOfBooks){
+            printThreeColumns(b.getTitle(), b.getAuthor(), b.getYearPublished());
+        }
 
 
+    }
+
+    private void printThreeColumns(Object column1, Object column2, Object column3) {
+        System.out.printf("%-22s%-22s%-22s%n", column1, column2, column3);
     }
 
 

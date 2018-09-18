@@ -26,6 +26,10 @@ public class Book {
         return author;
     }
 
+    String getTitle() {
+        return title;
+    }
+
     int getYearPublished() {
         return year;
     }
