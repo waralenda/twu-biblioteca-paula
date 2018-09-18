@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Library {
-    private List<Book> listOfBooks = new ArrayList<Book>();
+    private List<Book> listOfBooks = new ArrayList();
 
     public Library(List listOfBooks) {
         this.listOfBooks = listOfBooks;
@@ -28,6 +28,11 @@ public class Library {
         else {
             System.out.println("That is not a valid book to return. Please check your spelling or try renting a different book");
         }
+    }
+
+    void listBooks() {
+
+
     }
 
 
