@@ -3,6 +3,8 @@ package com.twu.biblioteca;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import java.util.List;
+import java.util.ArrayList;
 
 public class ExampleTest {
 
@@ -40,6 +42,14 @@ public class ExampleTest {
     }
 
 
-
+    @Test
+    public void testCheckoutBook() {
+        Book b = new Book("Title1", "Author1", 1984);
+        List<Book> listOfBooks = new ArrayList<Book>();
+        listOfBooks.add(b);
+        Library l = new Library(listOfBooks);
+        l.checkout(b);
+        assertEquals(false, b.getAvailability());
+    }
 
 }
