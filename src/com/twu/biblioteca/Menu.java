@@ -23,7 +23,7 @@ public class Menu {
 
     void chooseOption() {
         int choice = takeInput.nextInt();
-        if (this.checkIfValid(choice);){
+        if (this.checkIfValid(choice)) {
             switch (choice) {
                 case 1: {
                     library.listBooks();
@@ -61,7 +61,17 @@ public class Menu {
 
             }
         }
+        else {
+            System.out.println("Select a valid option!");
+            this.display();
+            this.chooseOption();
+        }
+    }
 
-
+    public boolean checkIfValid(int choice) {
+        if (choice == 1 || choice == 2 || choice == 3 || choice == 4)
+            return true;
+        else
+            return false;
     }
 }
