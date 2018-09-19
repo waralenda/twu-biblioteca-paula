@@ -4,6 +4,8 @@ package com.twu.biblioteca;
         import org.junit.Test;
         import static org.junit.Assert.assertEquals;
         import static org.junit.Assert.assertFalse;
+        import static org.junit.Assert.assertTrue;
+
         import java.util.List;
         import java.util.ArrayList;
 
@@ -386,6 +388,30 @@ public class ExampleTest {
         mov.returnMovie(m1);
         List<Movie> empty = new ArrayList<Movie>();
         assertEquals(empty, mov.getUnavailableMovies());
+    }
+
+    @Test
+    public void testIsUsernameInvalid() {
+        Menu menu = new Menu();
+        assertFalse(menu.isValidUsername("Paula"));
+    }
+
+    @Test
+    public void testIsUsernameValid() {
+        Menu menu = new Menu();
+        assertTrue(menu.isValidUsername("123-4567"));
+    }
+
+    @Test
+    public void testIsUsernameInvalid2() {
+        Menu menu = new Menu();
+        assertFalse(menu.isValidUsername("12345677"));
+    }
+
+    @Test
+    public void testIsUsernameValid2() {
+        Menu menu = new Menu();
+        assertTrue(menu.isValidUsername("xxx-xxxx"));
     }
 }
 

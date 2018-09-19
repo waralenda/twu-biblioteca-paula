@@ -52,12 +52,14 @@ public class Menu {
                     break;
                 }
                 case 2: {
+                    this.login();
                     Book b = getBookDetails();
                     library.checkoutBook(b);
                     this.chooseOption();
                     break;
                 }
                 case 3: {
+                    this.login();
                     Book b = getBookDetails();
                     library.returnBook(b);
                     this.chooseOption();
@@ -69,16 +71,21 @@ public class Menu {
                     break;
                 }
                 case 5: {
+                    this.login();
                     Movie m = getMovieDetails();
                     moviary.checkoutMovie(m);
                     this.chooseOption();
                     break;
                 }
                 case 6: {
+                    this.login();
                     Movie m = getMovieDetails();
                     moviary.returnMovie(m);
                     this.chooseOption();
                     break;
+                }
+                case 7: {
+                    this.login();
                 }
 
             }
@@ -89,11 +96,8 @@ public class Menu {
         }
     }
 
-    public boolean checkIfValid(int choice) {
-        return (choice == 1 || choice == 2 || choice == 3 || choice == 4 || choice == 5 || choice == 6 || choice == 7 || choice == 8);
-    }
 
-    public Book getBookDetails() {
+    private Book getBookDetails() {
         System.out.println("What is the title of the book?");
         String title = takeInput.next();
         System.out.println("Who is the author of the book?");
@@ -103,7 +107,7 @@ public class Menu {
         return new Book(title, author, year);
     }
 
-    public Movie getMovieDetails() {
+    private Movie getMovieDetails() {
         System.out.println("What is the title of the movie?");
         String title = takeInput.next();
         System.out.println("Who directed the movie?");
@@ -111,5 +115,36 @@ public class Menu {
         System.out.println("When was this movie released?");
         int year = takeInput.nextInt();
         return new Movie(title, director, year, 0);
+    }
+
+    protected boolean checkIfValid(int choice) {
+        return (choice == 1 || choice == 2 || choice == 3 || choice == 4 || choice == 5 || choice == 6 || choice == 7 || choice == 8);
+    }
+
+    protected void login() {
+        System.out.print("Enter username: ");
+        String username = takeInput.next();
+        if (!this.isValidUsername(username)){
+            System.out.println("This username is invalid, try again");
+            login();
+        }
+        else {
+            System.out.print("Enter password: ");
+            takeInput.next();
+        }
+    }
+
+    protected boolean isValidUsername(String username){
+        if(username.length() != 8){
+            System.out.println("Incorrect format: username too short or too long");
+            return false;
+        }
+        else if(username.charAt(3) != '-'){
+            System.out.println("Incorrect format: '-' is missing.");
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 }
