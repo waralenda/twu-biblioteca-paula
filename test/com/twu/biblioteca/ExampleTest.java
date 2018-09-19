@@ -284,6 +284,20 @@ public class ExampleTest {
         assertEquals(postReturn, con.getUnavailableContent());
     }
 
+    @Test
+    public void testEqualMovies() {
+        Movie m1 = new Movie("Title", "Director", 2000, 4);
+        Movie m2 = new Movie("Title", "Director", 2000, 5);
+        assertEquals(m1, m2);
+    }
+
+    @Test
+    public void testUnequalMovies() {
+        Movie m1 = new Movie("Title", "Director", 2000, 4);
+        Movie m2 = new Movie("Title", "Director2", 2000, 5);
+        assertFalse(m1 == m2);
+    }
+
 }
 
 

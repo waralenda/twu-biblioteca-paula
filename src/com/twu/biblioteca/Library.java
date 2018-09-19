@@ -23,20 +23,20 @@ public class Library extends Content {
 
     void checkoutBook(Book b){
         if (super.checkoutItem(b)) {
-            System.out.println("Thank you! Enjoy the book");
+            System.out.println("Thank you! Enjoy the book!");
         }
         else {
-            System.out.println("That book is not available. Please check your spelling or try renting a different book");
+            System.out.println("That book is not available. Please check your spelling or try renting a different book.");
         }
     }
 
 
     void returnBook(Book b){
         if (super.returnItem(b)) {
-            System.out.println("Thank you for returning the book");
+            System.out.println("Thank you for returning the book!");
         }
         else {
-            System.out.println("That is not a valid book to return. Please check your spelling or try renting a different book");
+            System.out.println("That is not a valid book to return. Please check your spelling or try renting a different book.");
         }
     }
 

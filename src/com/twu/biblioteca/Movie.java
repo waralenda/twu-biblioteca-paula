@@ -20,4 +20,14 @@ public class Movie extends Rentable {
     Object getRating() {
         return rating;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Movie movie = (Movie) o;
+        return this.year == movie.year &&
+                title.equals(movie.title) &&
+                creator.equals(movie.creator);
+    }
 }
