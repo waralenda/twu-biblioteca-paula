@@ -7,6 +7,7 @@ public class Menu {
     private Scanner takeInput = new Scanner(System.in);
     private Library library;
     private Moviary moviary;
+    private Login login = new Login();
 
     public Menu(Library library, Moviary moviary) {
         this.library = library;
@@ -52,14 +53,14 @@ public class Menu {
                     break;
                 }
                 case 2: {
-                    this.login();
+                    login.login();
                     Book b = getBookDetails();
                     library.checkoutBook(b);
                     this.chooseOption();
                     break;
                 }
                 case 3: {
-                    this.login();
+                    login.login();
                     Book b = getBookDetails();
                     library.returnBook(b);
                     this.chooseOption();
@@ -71,21 +72,23 @@ public class Menu {
                     break;
                 }
                 case 5: {
-                    this.login();
+                    login.login();
                     Movie m = getMovieDetails();
                     moviary.checkoutMovie(m);
                     this.chooseOption();
                     break;
                 }
                 case 6: {
-                    this.login();
+                    login.login();
                     Movie m = getMovieDetails();
                     moviary.returnMovie(m);
                     this.chooseOption();
                     break;
                 }
                 case 7: {
-                    this.login();
+                    login.login();
+                    User currentUser = new User(login.getUsername());
+                    currentUser.printUserData();
                 }
 
             }
@@ -121,30 +124,5 @@ public class Menu {
         return (choice == 1 || choice == 2 || choice == 3 || choice == 4 || choice == 5 || choice == 6 || choice == 7 || choice == 8);
     }
 
-    protected void login() {
-        System.out.print("Enter username: ");
-        String username = takeInput.next();
-        if (!this.isValidUsername(username)){
-            System.out.println("This username is invalid, try again");
-            login();
-        }
-        else {
-            System.out.print("Enter password: ");
-            takeInput.next();
-        }
-    }
 
-    protected boolean isValidUsername(String username){
-        if(username.length() != 8){
-            System.out.println("Incorrect format: username too short or too long");
-            return false;
-        }
-        else if(username.charAt(3) != '-'){
-            System.out.println("Incorrect format: '-' is missing.");
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
 }

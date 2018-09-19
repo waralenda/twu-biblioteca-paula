@@ -392,26 +392,53 @@ public class ExampleTest {
 
     @Test
     public void testIsUsernameInvalid() {
-        Menu menu = new Menu();
-        assertFalse(menu.isValidUsername("Paula"));
+        Login login = new Login();
+        assertFalse(login.isValidUsername("Paula"));
     }
 
     @Test
     public void testIsUsernameValid() {
-        Menu menu = new Menu();
-        assertTrue(menu.isValidUsername("123-4567"));
+        Login login = new Login();
+        assertTrue(login.isValidUsername("123-4567"));
     }
 
     @Test
     public void testIsUsernameInvalid2() {
-        Menu menu = new Menu();
-        assertFalse(menu.isValidUsername("12345677"));
+        Login login = new Login();
+        assertFalse(login.isValidUsername("12345677"));
     }
 
     @Test
     public void testIsUsernameValid2() {
-        Menu menu = new Menu();
-        assertTrue(menu.isValidUsername("xxx-xxxx"));
+        Login login = new Login();
+        assertTrue(login.isValidUsername("xxx-xxxx"));
+    }
+
+    @Test
+    public void testUserSetName() {
+        User testUser = new User("123");
+        testUser.setName("Paula");
+        assertEquals("Paula", testUser.getName());
+    }
+
+    @Test
+    public void testUserGetUsername() {
+        User testUser = new User("123");
+        assertEquals("123", testUser.getUsername());
+    }
+
+    @Test
+    public void testUserSetEmail() {
+        User testUser = new User("123");
+        testUser.setEmail("Paula");
+        assertEquals("Paula", testUser.getEmail());
+    }
+
+    @Test
+    public void testUserSetPhone() {
+        User testUser = new User("123");
+        testUser.setPhone("1237");
+        assertEquals("1237", testUser.getPhone());
     }
 }
 
