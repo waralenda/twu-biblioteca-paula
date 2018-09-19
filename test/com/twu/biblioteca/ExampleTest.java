@@ -226,5 +226,68 @@ public class ExampleTest {
         assertEquals(emptyList, con.getUnavailableContent());
     }
 
-    
+    @Test
+    public void testRentContent() {
+        List<Rentable> l = new ArrayList<Rentable>();
+        Rentable r1 = new Rentable("Title1", "Author1", 1991);
+        Rentable r2 = new Rentable("Title2", "Author2", 1992);
+        l.add(r1);
+        l.add(r2);
+        List<Rentable> postRent = new ArrayList<Rentable>();
+        postRent.add(r2);
+        Content con = new Content(l);
+        con.checkoutItem(r1);
+        assertEquals(postRent, con.getAvailableContent());
+    }
+
+    @Test
+    public void testRentContent2() {
+        List<Rentable> l = new ArrayList<Rentable>();
+        Rentable r1 = new Rentable("Title1", "Author1", 1991);
+        Rentable r2 = new Rentable("Title2", "Author2", 1992);
+        l.add(r1);
+        l.add(r2);
+        List<Rentable> postRent = new ArrayList<Rentable>();
+        postRent.add(r1);
+        Content con = new Content(l);
+        con.checkoutItem(r1);
+        assertEquals(postRent, con.getUnavailableContent());
+    }
+
+    @Test
+    public void testReturnItem() {
+        List<Rentable> l = new ArrayList<Rentable>();
+        Rentable r1 = new Rentable("Title1", "Author1", 1991);
+        Rentable r2 = new Rentable("Title2", "Author2", 1992);
+        l.add(r1);
+        l.add(r2);
+        List<Rentable> postReturn = new ArrayList<Rentable>();
+        postReturn.add(r2);
+        postReturn.add(r1);
+        Content con = new Content(l);
+        con.checkoutItem(r1);
+        con.returnItem(r1);
+        assertEquals(postReturn, con.getAvailableContent());
+    }
+
+    @Test
+    public void testReturnItem2() {
+        List<Rentable> l = new ArrayList<Rentable>();
+        Rentable r1 = new Rentable("Title1", "Author1", 1991);
+        Rentable r2 = new Rentable("Title2", "Author2", 1992);
+        l.add(r1);
+        l.add(r2);
+        List<Rentable> postReturn = new ArrayList<Rentable>();
+        Content con = new Content(l);
+        con.checkoutItem(r1);
+        con.returnItem(r1);
+        assertEquals(postReturn, con.getUnavailableContent());
+    }
+
 }
+
+
+
+
+
+
