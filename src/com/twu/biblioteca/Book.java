@@ -4,7 +4,6 @@ public class Book {
     private String title;
     private String author;
     private int year;
-    private boolean available = true;
 
     public Book(String title, String author, int year) {
         this.title = title;
@@ -12,26 +11,23 @@ public class Book {
         this.year = year;
     }
 
-    void setUnavailable() {
-        available = false;
+    int getYearPublished() {
+        return year;
     }
-    void setAvailable() {
-        available = true;
-    }
-    boolean getAvailability() {
-        return available;
-    }
-
     String getAuthor() {
         return author;
     }
-
     String getTitle() {
         return title;
     }
 
-    int getYearPublished() {
-        return year;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return year == book.year &&
+                title.equals(book.title) &&
+                author.equals(book.author);
     }
-
 }

@@ -4,33 +4,10 @@ package com.twu.biblioteca;
         import org.junit.Test;
         import static org.junit.Assert.assertEquals;
         import static org.junit.Assert.assertFalse;
-        import static org.junit.Assert.assertTrue;
         import java.util.List;
         import java.util.ArrayList;
 
 public class ExampleTest {
-
-    @Test
-    public void testGetAvailability() {
-        Book b = new Book("Title1", "Author1", 1984);
-        assertTrue(b.getAvailability());
-    }
-
-    @Test
-    public void testSetUnavailabile() {
-        Book b = new Book("Title1", "Author1", 1984);
-        b.setUnavailable();
-        assertFalse(b.getAvailability());
-    }
-
-    @Test
-    public void testSetAvailabile() {
-        Book b = new Book("Title", "Author1", 1984);
-        b.setUnavailable();
-        b.setAvailable();
-        assertTrue(b.getAvailability());
-    }
-
     @Test
     public void testGetAuthorNull() {
         Book b = new Book("Title1", "Author1", 1984);
@@ -50,27 +27,6 @@ public class ExampleTest {
     }
 
     @Test
-    public void testCheckoutBook() {
-        Book b = new Book("Title1", "Author1", 1984);
-        List<Book> listOfBooks = new ArrayList<Book>();
-        listOfBooks.add(b);
-        Library l = new Library(listOfBooks);
-        l.checkoutBook(b, listOfBooks);
-        assertFalse(b.getAvailability());
-    }
-
-    @Test
-    public void testReturnBook() {
-        Book b = new Book("Title1", "Author1", 1984);
-        b.setUnavailable();
-        List<Book> listOfBooks = new ArrayList<Book>();
-        listOfBooks.add(b);
-        Library l = new Library(listOfBooks);
-        l.returnBook(b, listOfBooks);
-        assertTrue(b.getAvailability());
-    }
-
-    @Test
     public void testCheckIfValid() {
         List listOfBooks = new ArrayList();
         Library library = new Library(listOfBooks);
@@ -78,4 +34,125 @@ public class ExampleTest {
         assertFalse(menu.checkIfValid(5));
     }
 
+    @Test
+    public void testOverrideEquals() {
+        Book b1 = new Book("Title1", "Author1", 1991);
+        Book b2 = new Book("Title1", "Author1", 1991);
+        assertEquals(b1, b2);
+    }
+
+    @Test
+    public void testUnequalsBooksYear() {
+        Book b1 = new Book("Title1", "Author1", 1992);
+        Book b2 = new Book("Title1", "Author1", 1991);
+        assertFalse(b1 == b2);
+    }
+
+    @Test
+    public void testUnequalsBooksTitle() {
+        Book b1 = new Book("Title1", "Author1", 1991);
+        Book b2 = new Book("Title2", "Author1", 1991);
+        assertFalse(b1 == b2);
+    }
+
+    @Test
+    public void testUnequalsBooksAuthor() {
+        Book b1 = new Book("Title1", "Author1", 1991);
+        Book b2 = new Book("Title1", "Author2", 1991);
+        assertFalse(b1 == b2);
+    }
+
+    @Test
+    public void testAvailableBooks() {
+        List<Book> l = new ArrayList<Book>();
+        Book b1 = new Book("Title1", "Author1", 1991);
+        Book b2 = new Book("Title2", "Author2", 1992);
+        l.add(b1);
+        l.add(b2);
+        Library lib = new Library(l);
+        assertEquals(lib.getListOfBooks(), lib.getAvailableBooks());
+    }
+
+    @Test
+    public void testUnavailableBooks() {
+        List<Book> l = new ArrayList<Book>();
+        List<Book> emptyList = new ArrayList<Book>();
+        Book b1 = new Book("Title1", "Author1", 1991);
+        l.add(b1);
+        Library lib = new Library(l);
+        assertEquals(emptyList, lib.getUnavailableBooks());
+    }
+
+    @Test
+    public void testRentBook() {
+        List<Book> l = new ArrayList<Book>();
+        Book b1 = new Book("Title1", "Author1", 1991);
+        Book b2 = new Book("Title2", "Author2", 1992);
+        l.add(b1);
+        l.add(b2);
+        List<Book> postRent = new ArrayList<Book>();
+        postRent.add(b2);
+        Library lib = new Library(l);
+        lib.checkoutBook(b1);
+        assertEquals(postRent, lib.getAvailableBooks());
+    }
+
+    @Test
+    public void testRentBook2() {
+        List<Book> l = new ArrayList<Book>();
+        Book b1 = new Book("Title1", "Author1", 1991);
+        Book b2 = new Book("Title2", "Author2", 1992);
+        l.add(b1);
+        l.add(b2);
+        List<Book> postRent = new ArrayList<Book>();
+        postRent.add(b1);
+        Library lib = new Library(l);
+        lib.checkoutBook(b1);
+        assertEquals(postRent, lib.getUnavailableBooks());
+    }
+
+    @Test
+    public void testReturnBook() {
+        List<Book> l = new ArrayList<Book>();
+        Book b1 = new Book("Title1", "Author1", 1991);
+        Book b2 = new Book("Title2", "Author2", 1992);
+        l.add(b1);
+        l.add(b2);
+        List<Book> postReturn = new ArrayList<Book>();
+        postReturn.add(b2);
+        postReturn.add(b1);
+        Library lib = new Library(l);
+        lib.checkoutBook(b1);
+        lib.returnBook(b1);
+        assertEquals(postReturn, lib.getAvailableBooks());
+    }
+
+    @Test
+    public void testReturnBook2() {
+        List<Book> l = new ArrayList<Book>();
+        Book b1 = new Book("Title1", "Author1", 1991);
+        Book b2 = new Book("Title2", "Author2", 1992);
+        l.add(b1);
+        l.add(b2);
+        List<Book> postReturn = new ArrayList<Book>();
+        Library lib = new Library(l);
+        lib.checkoutBook(b1);
+        lib.returnBook(b1);
+        assertEquals(postReturn, lib.getUnavailableBooks());
+    }
+
+    @Test
+    public void testListsOfBooks() {
+        List<Book> l = new ArrayList<Book>();
+        Book b1 = new Book("Title1", "Author1", 1991);
+        Book b2 = new Book("Title2", "Author2", 1992);
+        l.add(b1);
+        l.add(b2);
+        List<Book> fullList = new ArrayList<Book>();
+        fullList.add(b1);
+        fullList.add(b2);
+        Library lib = new Library(l);
+        lib.checkoutBook(b1);
+        assertEquals(fullList, lib.getListOfBooks());
+    }
 }

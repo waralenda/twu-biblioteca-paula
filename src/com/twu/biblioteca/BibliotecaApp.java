@@ -10,7 +10,6 @@ public class BibliotecaApp {
         List listOfBooks = new ArrayList();
         Library library = new Library(listOfBooks);
         Menu menu = new Menu(library);
-        menu.display();
         menu.chooseOption();
     }
 }

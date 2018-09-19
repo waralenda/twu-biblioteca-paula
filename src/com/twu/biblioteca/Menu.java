@@ -1,13 +1,9 @@
 package com.twu.biblioteca;
 
 import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Set;
 
 public class Menu {
     private Scanner takeInput = new Scanner(System.in);
-    private List listOfBooks = new ArrayList();
     private Library library;
 
     public Menu(Library library) {
@@ -23,49 +19,43 @@ public class Menu {
     }
 
     public void chooseOption() {
+        this.display ();
         int choice = takeInput.nextInt();
         if (this.checkIfValid(choice)) {
             switch (choice) {
                 case 1: {
-                    library.listBooks(library.getListOfBooks());
-                    this.display();
+                    library.listBooks();
                     this.chooseOption();
                     break;
                 }
                 case 2: {
                     Book b = getBookDetails();
-                    library.checkoutBook(b, listOfBooks);
-                    this.display();
+                    library.checkoutBook(b);
                     this.chooseOption();
                     break;
                 }
                 case 3: {
                     Book b = getBookDetails();
-                    library.returnBook(b, listOfBooks);
-                    this.display();
+                    library.returnBook(b);
                     this.chooseOption();
                     break;
                 }
             }
         }
-
         else {
             System.out.println("Select a valid option!");
-            this.display();
             this.chooseOption();
         }
     }
-
 
     public boolean checkIfValid(int choice) {
         return (choice == 1 || choice == 2 || choice == 3 || choice == 4);
     }
 
-
-    private Book getBookDetails() {
-        System.out.println("What is the title of the book you would like to checkout?");
+    public Book getBookDetails() {
+        System.out.println("What is the title of the book?");
         String title = takeInput.next();
-        System.out.println("Who is the author of the book you would like to checkout?");
+        System.out.println("Who is the author of the book?");
         String author = takeInput.next();
         System.out.println("When was this book published?");
         int year = takeInput.nextInt();
