@@ -40,7 +40,6 @@ public class Content {
         }
     }
 
-
     boolean returnItem(Rentable r){
         if (this.getUnavailableContent().contains(r)) {
             this.unavailableContent.remove(r);

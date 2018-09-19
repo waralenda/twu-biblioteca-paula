@@ -31,7 +31,7 @@ public class ExampleTest {
         List listOfBooks = new ArrayList();
         Library library = new Library(listOfBooks);
         Menu menu = new Menu(library);
-        assertFalse(menu.checkIfValid(5));
+        assertFalse(menu.checkIfValid(10));
     }
 
     @Test
@@ -298,6 +298,95 @@ public class ExampleTest {
         assertFalse(m1 == m2);
     }
 
+    @Test
+    public void testGetListOfMovies() {
+        Movie m1 = new Movie("Title", "Director", 2000, 3);
+        List<Movie> fullList = new ArrayList<Movie>();
+        fullList.add(m1);
+        Moviary mov = new Moviary(fullList);
+        assertEquals(fullList, mov.getListOfMovies());
+    }
+
+    @Test
+    public void testGetAvailableMovies() {
+        Movie m1 = new Movie("Title", "Director", 2000, 4);
+        Movie m2 = new Movie("Title", "Director2", 2000, 10);
+        List<Movie> l = new ArrayList<Movie>();
+        l.add(m1);
+        l.add(m2);
+        Moviary mov = new Moviary(l);
+        assertEquals(l, mov.getAvailableMovies());
+    }
+
+    @Test
+    public void testGetUnavailableMovies() {
+        Movie m1 = new Movie("Title", "Director", 2000, 4);
+        Movie m2 = new Movie("Title", "Director2", 2000, 10);
+        List<Movie> l = new ArrayList<Movie>();
+        l.add(m1);
+        l.add(m2);
+        Moviary mov = new Moviary(l);
+        List<Movie> empty = new ArrayList<Movie>();
+        assertEquals(empty, mov.getUnavailableMovies());
+    }
+
+    @Test
+    public void testRentMovieAvailableContent() {
+        Movie m1 = new Movie("Title", "Director", 2000, 4);
+        Movie m2 = new Movie("Title", "Director2", 2000, 10);
+        List<Movie> l = new ArrayList<Movie>();
+        l.add(m1);
+        l.add(m2);
+        Moviary mov = new Moviary(l);
+        mov.checkoutMovie(m1);
+        List<Movie> postRent = new ArrayList<Movie>();
+        postRent.add(m2);
+        assertEquals(postRent, mov.getAvailableMovies());
+    }
+
+    @Test
+    public void testRentMovieUnavailableContent() {
+        Movie m1 = new Movie("Title", "Director", 2000, 4);
+        Movie m2 = new Movie("Title", "Director2", 2000, 10);
+        List<Movie> l = new ArrayList<Movie>();
+        l.add(m1);
+        l.add(m2);
+        Moviary mov = new Moviary(l);
+        mov.checkoutMovie(m1);
+        List<Movie> postRent = new ArrayList<Movie>();
+        postRent.add(m1);
+        assertEquals(postRent, mov.getUnavailableMovies());
+    }
+
+    @Test
+    public void testReturnMovieAvailableContent() {
+        Movie m1 = new Movie("Title", "Director", 2000, 4);
+        Movie m2 = new Movie("Title", "Director2", 2000, 10);
+        List<Movie> l = new ArrayList<Movie>();
+        l.add(m1);
+        l.add(m2);
+        Moviary mov = new Moviary(l);
+        mov.checkoutMovie(m1);
+        mov.returnMovie(m1);
+        List<Movie> postReturn = new ArrayList<Movie>();
+        postReturn.add(m2);
+        postReturn.add(m1);
+        assertEquals(postReturn, mov.getAvailableMovies());
+    }
+
+    @Test
+    public void testReturnMovieUnavailableContent() {
+        Movie m1 = new Movie("Title", "Director", 2000, 4);
+        Movie m2 = new Movie("Title", "Director2", 2000, 10);
+        List<Movie> l = new ArrayList<Movie>();
+        l.add(m1);
+        l.add(m2);
+        Moviary mov = new Moviary(l);
+        mov.checkoutMovie(m1);
+        mov.returnMovie(m1);
+        List<Movie> empty = new ArrayList<Movie>();
+        assertEquals(empty, mov.getUnavailableMovies());
+    }
 }
 
 

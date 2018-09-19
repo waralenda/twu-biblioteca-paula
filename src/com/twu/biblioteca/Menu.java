@@ -1,14 +1,33 @@
 package com.twu.biblioteca;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
     private Scanner takeInput = new Scanner(System.in);
     private Library library;
+    private Moviary moviary;
+
+    public Menu(Library library, Moviary moviary) {
+        this.library = library;
+        this.moviary = moviary;
+    }
 
     public Menu(Library library) {
         this.library = library;
+        this.moviary = new Moviary(new ArrayList<Movie>());
     }
+
+    public Menu(Moviary moviary) {
+        this.library = new Library(new ArrayList<Book>());
+        this.moviary = moviary;
+    }
+
+    public Menu() {
+        this.library = new Library(new ArrayList<Book>());
+        this.moviary = new Moviary(new ArrayList<Movie>());
+    }
+
 
     public void display() {
         System.out.println("Choose one of the following options:");
@@ -44,6 +63,24 @@ public class Menu {
                     this.chooseOption();
                     break;
                 }
+                case 4: {
+                    moviary.listMovies();
+                    this.chooseOption();
+                    break;
+                }
+                case 5: {
+                    Movie m = getMovieDetails();
+                    moviary.checkoutMovie(m);
+                    this.chooseOption();
+                    break;
+                }
+                case 6: {
+                    Movie m = getMovieDetails();
+                    moviary.returnMovie(m);
+                    this.chooseOption();
+                    break;
+                }
+
             }
         }
         else {

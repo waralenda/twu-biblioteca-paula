@@ -36,7 +36,7 @@ public class Library extends Content {
             System.out.println("Thank you for returning the book!");
         }
         else {
-            System.out.println("That is not a valid book to return. Please check your spelling or try renting a different book.");
+            System.out.println("That is not a valid book to return. Please check your spelling or try returning a different book.");
         }
     }
 

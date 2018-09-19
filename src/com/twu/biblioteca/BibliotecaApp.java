@@ -9,7 +9,9 @@ public class BibliotecaApp {
         System.out.println("Welcome to Biblioteca!");
         List listOfBooks = new ArrayList();
         Library library = new Library(listOfBooks);
-        Menu menu = new Menu(library);
+        List listOfMovies = new ArrayList();
+        Moviary moviary = new Moviary(listOfMovies);
+        Menu menu = new Menu(library, moviary);
         menu.chooseOption();
     }
 }
