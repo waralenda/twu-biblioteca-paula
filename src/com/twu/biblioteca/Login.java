@@ -5,7 +5,7 @@ public class Login {
     private String username;
     private Scanner takeInput = new Scanner(System.in);
 
-    public void login() {
+    public String login() {
         System.out.print("Enter username: ");
         username = takeInput.next();
         if (!this.isValidUsername(username)){
@@ -16,6 +16,7 @@ public class Login {
             System.out.print("Enter password: ");
             takeInput.next();
         }
+        return username;
     }
 
     public String getUsername(){

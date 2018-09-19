@@ -3,9 +3,11 @@ package com.twu.biblioteca;
 import java.util.List;
 
 public class Library extends Content {
+    private List<User> users;
 
-    public Library(List<Book> books) {
+    public Library(List<Book> books, List<User> users) {
         super((List<Rentable>)(Object) books);
+        this.users = users;
     }
 
     public List<Book> getListOfBooks() {
@@ -20,6 +22,19 @@ public class Library extends Content {
         return (List<Book>)(Object) super.getUnavailableContent();
     }
 
+    public User findUser(String username){
+        User currentUser = null;
+        for(User user : users){
+            if(user.getUsername().equals(username)){
+                currentUser = user;
+                break;
+            }
+            else {
+                currentUser = new User("000-0000");
+            }
+        }
+        return currentUser;
+    }
 
     void checkoutBook(Book b){
         if (super.checkoutItem(b)) {

@@ -12,7 +12,7 @@ public class TestLibraryFirstRelease {
         listOfBooks.add(book1);
         listOfBooks.add(book2);
 
-        Library library = new Library(listOfBooks);
+        Library library = new Library(listOfBooks, new ArrayList<User>());
 
         Menu menu = new Menu(library);
 

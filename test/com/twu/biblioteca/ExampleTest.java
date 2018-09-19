@@ -30,8 +30,9 @@ public class ExampleTest {
 
     @Test
     public void testCheckIfValid() {
-        List listOfBooks = new ArrayList();
-        Library library = new Library(listOfBooks);
+        List<Book> listOfBooks = new ArrayList<Book>();
+        List<User> users = new ArrayList<User>();
+        Library library = new Library(listOfBooks, users);
         Menu menu = new Menu(library);
         assertFalse(menu.checkIfValid(10));
     }
@@ -66,27 +67,30 @@ public class ExampleTest {
 
     @Test
     public void testAvailableBooks() {
+        List<User> users = new ArrayList<User>();
         List<Book> l = new ArrayList<Book>();
         Book b1 = new Book("Title1", "Author1", 1991);
         Book b2 = new Book("Title2", "Author2", 1992);
         l.add(b1);
         l.add(b2);
-        Library lib = new Library(l);
+        Library lib = new Library(l, users);
         assertEquals(lib.getListOfBooks(), lib.getAvailableBooks());
     }
 
     @Test
     public void testUnavailableBooks() {
+        List<User> users = new ArrayList<User>();
         List<Book> l = new ArrayList<Book>();
         List<Book> emptyList = new ArrayList<Book>();
         Book b1 = new Book("Title1", "Author1", 1991);
         l.add(b1);
-        Library lib = new Library(l);
+        Library lib = new Library(l, users);
         assertEquals(emptyList, lib.getUnavailableBooks());
     }
 
     @Test
     public void testRentBook() {
+        List<User> users = new ArrayList<User>();
         List<Book> l = new ArrayList<Book>();
         Book b1 = new Book("Title1", "Author1", 1991);
         Book b2 = new Book("Title2", "Author2", 1992);
@@ -94,13 +98,14 @@ public class ExampleTest {
         l.add(b2);
         List<Book> postRent = new ArrayList<Book>();
         postRent.add(b2);
-        Library lib = new Library(l);
+        Library lib = new Library(l, users);
         lib.checkoutBook(b1);
         assertEquals(postRent, lib.getAvailableBooks());
     }
 
     @Test
     public void testRentBook2() {
+        List<User> users = new ArrayList<User>();
         List<Book> l = new ArrayList<Book>();
         Book b1 = new Book("Title1", "Author1", 1991);
         Book b2 = new Book("Title2", "Author2", 1992);
@@ -108,13 +113,14 @@ public class ExampleTest {
         l.add(b2);
         List<Book> postRent = new ArrayList<Book>();
         postRent.add(b1);
-        Library lib = new Library(l);
+        Library lib = new Library(l, users);
         lib.checkoutBook(b1);
         assertEquals(postRent, lib.getUnavailableBooks());
     }
 
     @Test
     public void testReturnBook() {
+        List<User> users = new ArrayList<User>();
         List<Book> l = new ArrayList<Book>();
         Book b1 = new Book("Title1", "Author1", 1991);
         Book b2 = new Book("Title2", "Author2", 1992);
@@ -123,7 +129,7 @@ public class ExampleTest {
         List<Book> postReturn = new ArrayList<Book>();
         postReturn.add(b2);
         postReturn.add(b1);
-        Library lib = new Library(l);
+        Library lib = new Library(l,users);
         lib.checkoutBook(b1);
         lib.returnBook(b1);
         assertEquals(postReturn, lib.getAvailableBooks());
@@ -131,13 +137,14 @@ public class ExampleTest {
 
     @Test
     public void testReturnBook2() {
+        List<User> users = new ArrayList<User>();
         List<Book> l = new ArrayList<Book>();
         Book b1 = new Book("Title1", "Author1", 1991);
         Book b2 = new Book("Title2", "Author2", 1992);
         l.add(b1);
         l.add(b2);
         List<Book> postReturn = new ArrayList<Book>();
-        Library lib = new Library(l);
+        Library lib = new Library(l,users);
         lib.checkoutBook(b1);
         lib.returnBook(b1);
         assertEquals(postReturn, lib.getUnavailableBooks());
@@ -145,6 +152,7 @@ public class ExampleTest {
 
     @Test
     public void testListsOfBooks() {
+        List<User> users = new ArrayList<User>();
         List<Book> l = new ArrayList<Book>();
         Book b1 = new Book("Title1", "Author1", 1991);
         Book b2 = new Book("Title2", "Author2", 1992);
@@ -153,7 +161,7 @@ public class ExampleTest {
         List<Book> fullList = new ArrayList<Book>();
         fullList.add(b1);
         fullList.add(b2);
-        Library lib = new Library(l);
+        Library lib = new Library(l,users);
         assertEquals(fullList, lib.getListOfBooks());
     }
 

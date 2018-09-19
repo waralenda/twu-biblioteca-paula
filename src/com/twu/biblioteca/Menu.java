@@ -20,12 +20,12 @@ public class Menu {
     }
 
     public Menu(Moviary moviary) {
-        this.library = new Library(new ArrayList<Book>());
+        this.library = new Library(new ArrayList<Book>(), new ArrayList<User>());
         this.moviary = moviary;
     }
 
     public Menu() {
-        this.library = new Library(new ArrayList<Book>());
+        this.library = new Library(new ArrayList<Book>(), new ArrayList<User>());
         this.moviary = new Moviary(new ArrayList<Movie>());
     }
 
@@ -86,9 +86,16 @@ public class Menu {
                     break;
                 }
                 case 7: {
-                    login.login();
-                    User currentUser = new User(login.getUsername());
-                    currentUser.printUserData();
+                    String username = login.login();
+                    User currentUser = library.findUser(username);
+                    if (currentUser.getUsername() == "000-0000"){
+                        System.out.println("User does not exist, please try again");
+                        this.chooseOption();
+                    }
+                    else {
+                        currentUser.printUserData();
+                        this.chooseOption();
+                    }
                 }
 
             }

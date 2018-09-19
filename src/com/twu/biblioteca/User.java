@@ -35,7 +35,7 @@ public class User {
     }
 
     public void printUserData() {
-        System.out.println("Name        " + name);
+        System.out.println("Name                 " + name);
         System.out.println("Email address       " + email);
         System.out.println("Phone number        " + phone);
     }
