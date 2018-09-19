@@ -1,9 +1,9 @@
 package com.twu.biblioteca;
 
 public class Movie extends Rentable {
-    private int rating;
+    private Object rating;
 
-    public Movie(String title, String director, int year, int rating) {
+    public Movie(String title, String director, int year, Object rating) {
         super(title, director, year);
         this.rating = rating;
     }
@@ -17,7 +17,7 @@ public class Movie extends Rentable {
     String getTitle() {
         return super.getTitle();
     }
-    int getRating() {
+    Object getRating() {
         return rating;
     }
 }

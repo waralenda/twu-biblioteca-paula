@@ -198,4 +198,33 @@ public class ExampleTest {
         Movie m = new Movie("Title", "Director", 2019, 8);
         assertEquals(8, m.getRating());
     }
+
+    @Test
+    public void testMovieGetRatingUnrated() {
+        Movie m = new Movie("Title", "Director", 2019, "unrated");
+        assertEquals("unrated", m.getRating());
+    }
+
+    @Test
+    public void testAvailableContent() {
+        List<Rentable> l = new ArrayList<Rentable>();
+        Rentable r1 = new Rentable("Title1", "Author1", 1991);
+        Rentable r2 = new Rentable("Title2", "Author2", 1992);
+        l.add(r1);
+        l.add(r2);
+        Content con = new Content(l);
+        assertEquals(con.getContents(), con.getAvailableContent());
+    }
+
+    @Test
+    public void testUnavailableContent() {
+        List<Rentable> l = new ArrayList<Rentable>();
+        List<Rentable> emptyList = new ArrayList<Rentable>();
+        Rentable r1 = new Rentable("Title1", "Author1", 1991);
+        l.add(r1);
+        Content con = new Content(l);
+        assertEquals(emptyList, con.getUnavailableContent());
+    }
+
+    
 }
