@@ -17,7 +17,7 @@ public class ExampleTest {
     @Test
     public void testGetYearPublished() {
         Book b = new Book("Title1", "Author1", 1984);
-        assertEquals(1984, b.getYearPublished());
+        assertEquals(1984, b.getYear());
     }
 
     @Test
@@ -152,7 +152,50 @@ public class ExampleTest {
         fullList.add(b1);
         fullList.add(b2);
         Library lib = new Library(l);
-        lib.checkoutBook(b1);
         assertEquals(fullList, lib.getListOfBooks());
+    }
+
+    ///// RELEASE 2
+
+    @Test
+    public void testRentableGetTitle() {
+        Rentable r = new Rentable("Title", "Creator", 2018);
+        assertEquals("Title", r.getTitle());
+    }
+
+    @Test
+    public void testRentableGetCreator() {
+        Rentable r = new Rentable("Title", "Creator", 2018);
+        assertEquals("Creator", r.getCreator());
+    }
+
+    @Test
+    public void testRentableGetYear() {
+        Rentable r = new Rentable("Title", "Creator", 2018);
+        assertEquals(2018, r.getYear());
+    }
+
+    @Test
+    public void testMovieGetTitle() {
+        Movie m = new Movie("Title", "Director", 2019, 8);
+        assertEquals("Title", m.getTitle());
+    }
+
+    @Test
+    public void testMovieGetDirector() {
+        Movie m = new Movie("Title", "Director", 2019, 8);
+        assertEquals("Director", m.getDirector());
+    }
+
+    @Test
+    public void testMovieGetYear() {
+        Movie m = new Movie("Title", "Director", 2019, 8);
+        assertEquals(2019, m.getYear());
+    }
+
+    @Test
+    public void testMovieGetRating() {
+        Movie m = new Movie("Title", "Director", 2019, 8);
+        assertEquals(8, m.getRating());
     }
 }

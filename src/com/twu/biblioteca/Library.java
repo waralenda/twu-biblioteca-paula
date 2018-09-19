@@ -1,7 +1,5 @@
 package com.twu.biblioteca;
 
-import com.sun.source.tree.LambdaExpressionTree;
-
 import java.util.List;
 import java.util.ArrayList;
 
@@ -60,10 +58,10 @@ public class Library {
         System.out.println("-----------------------------------------------------------------------------------");
         for (Book b : this.getListOfBooks()){
             if(this.availableBooks.contains(b)){
-                printFourColumns(b.getTitle(), b.getAuthor(), b.getYearPublished(), true);
+                printFourColumns(b.getTitle(), b.getAuthor(), b.getYear(), true);
             }
             else if(this.unavailableBooks.contains(b)) {
-                printFourColumns(b.getTitle(), b.getAuthor(), b.getYearPublished(), false);
+                printFourColumns(b.getTitle(), b.getAuthor(), b.getYear(), false);
             }
 
         }

@@ -1,24 +1,19 @@
 package com.twu.biblioteca;
 
-public class Book {
-    private String title;
-    private String author;
-    private int year;
+public class Book extends Rentable {
 
     public Book(String title, String author, int year) {
-        this.title = title;
-        this.author = author;
-        this.year = year;
+        super(title, author, year);
     }
 
-    int getYearPublished() {
-        return year;
+    int getYear() {
+        return super.getYear();
     }
     String getAuthor() {
-        return author;
+        return super.getCreator();
     }
     String getTitle() {
-        return title;
+        return super.getTitle();
     }
 
     @Override
@@ -26,8 +21,8 @@ public class Book {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return year == book.year &&
+        return this.year == book.year &&
                 title.equals(book.title) &&
-                author.equals(book.author);
+                creator.equals(book.creator);
     }
 }
